@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 struct ablkcipher_buffer {
 	struct list_head	entry;
 	struct scatter_walk	dst;
@@ -1207,4 +1206,3 @@ int in_egroup_p(gid_t grp)
 	return retval;
 
 }
->>>>>>> 12f6c6b6fe64081d9fbd447b6b5af9b2c8f53dd8
