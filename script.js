@@ -21,6 +21,7 @@ var Typer={
 	file:"", //file, must be setted
 	accessCount:0, //times alt is pressed for Access Granted
 	deniedCount:0, //times caps is pressed for Access Denied
+	codesCount:0,  //times . is pressed for Codes popup
 	init: function(){// inizialize Hacker Typer
 		accessCountimer=setInterval(function(){Typer.updLstChr();},500); // inizialize timer for blinking cursor
 		$.get(Typer.file,function(data){// get the text file
@@ -55,10 +56,20 @@ var Typer={
 		$(document.body).prepend(ddiv);// prepend div to body
 		return false;
 	},
+	makeCodes:function(){//create Nicolas Codes popUp      FIXME: popup is on top of the page and doesn't show is the page is scrolled
+		Typer.hidepop(); // hide all popups
+		Typer.codesCount=0; //reset count
+		var ddiv=$("<div id='codes'>").html(""); // create new blank div and id "deni"
+		ddiv.addClass("nicCodes");// add class to the div
+		ddiv.html('<img src="codes.jpg"><img>');// set content of div
+		$(document.body).prepend(ddiv);// prepend div to body
+		return false;
+	},
 	
 	hidepop:function(){// remove all existing popups
 		$("#deni").remove();
 		$("#gran").remove();
+		$("#codes").remove();
 	},
 	
 	addText:function(key){//Main function to add the code
@@ -71,6 +82,11 @@ var Typer={
 			Typer.deniedCount++; // increase counter
 			if(Typer.deniedCount>=3){ // if it's pressed 3 times
 				Typer.makeDenied(); // make denied popup
+			}
+		}else if(key.keyCode==190){ // key 190 = . key
+			Typer.codesCount++; // increase counter
+			if(Typer.codesCount>=3){ // make codes popup
+				Typer.makeCodes();
 			}
 		}else if(key.keyCode==27){ // key 27 = esc key
 			Typer.hidepop(); // hide all popups

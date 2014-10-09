@@ -28,3 +28,14 @@ body{
 	margin-left:-150px;
 	text-align:center;
 }
+
+.nicCodes{
+	position:absolute;
+	top:200px;
+	color:#F00;
+	padding:20px;
+	width:60%;
+	left:30%;
+	margin-left:-150px;
+	text-align:center;
+}
